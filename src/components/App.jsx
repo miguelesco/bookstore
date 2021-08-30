@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import GlobalStyles from '../styles/GlobalStyles';
 import Navbar from './navbar/Navbar';
-import Books from './books/Books';
+import MainBooks from './books/MainBooks';
 import Categories from './categories/Categories';
 
 class App extends react.PureComponent {
@@ -18,7 +18,7 @@ class App extends react.PureComponent {
         <Navbar />
         <Switch>
           <Route path="/" exact>
-            <Books />
+            <MainBooks />
           </Route>
           <Route path="/category">
             <Categories />
