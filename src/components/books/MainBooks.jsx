@@ -12,10 +12,13 @@ const MainBooks = () => {
   const handdleNewBook = ({ title = '', category = '' }) => {
     setBooks([...books, { title, category, id: uuid() }]);
   };
+  const propsRemoveBook = (id) => {
+    setBooks(books.filter((book) => book.id !== id));
+  };
   return (
     <div>
       <h1>Books</h1>
-      <BooksDisplay books={books} />
+      <BooksDisplay books={books} propsRemoveBook={propsRemoveBook} />
       <AddBook handdleNewBook={handdleNewBook} />
     </div>
   );

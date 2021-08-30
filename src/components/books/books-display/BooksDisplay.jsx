@@ -2,17 +2,23 @@
 import PropTypes from 'prop-types';
 
 const BooksDisplay = (props) => {
-  const { books } = props;
+  const { books, propsRemoveBook } = props;
+  const removeBook = (id) => {
+    propsRemoveBook(id);
+  };
   return (
     <div>
       <h1>Books Display</h1>
       <ul>
         {books.map((book) => (
-          <li key={book.id}>
-            {book.title}
-            {' '}
-            {book.category}
-          </li>
+          <div key={book.id}>
+            <li>
+              {book.title}
+              {' '}
+              {book.category}
+            </li>
+            <button type="button" onClick={() => removeBook(book.id)}>Remove</button>
+          </div>
         ))}
       </ul>
     </div>
@@ -28,4 +34,5 @@ BooksDisplay.propTypes = {
       category: PropTypes.string,
     }),
   ).isRequired,
+  propsRemoveBook: PropTypes.func.isRequired,
 };
