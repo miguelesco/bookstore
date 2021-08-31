@@ -1,6 +1,9 @@
 /* eslint-disable linebreak-style */
 import { useState } from 'react';
+import uuid from 'react-uuid';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { addBook } from '../../../redux/books/books';
 
 const options = [
   { id: 1, name: 'tech' },
@@ -14,7 +17,9 @@ const options = [
 ];
 
 const AddBook = (props) => {
+  const dispatch = useDispatch();
   const [book, setBook] = useState({
+    id: uuid(),
     title: '',
     category: '',
   });
@@ -22,7 +27,9 @@ const AddBook = (props) => {
     const { handdleNewBook } = props;
     e.preventDefault();
     handdleNewBook(book);
+    dispatch(addBook(book));
     setBook({
+      id: uuid(),
       title: '',
       category: '',
     });

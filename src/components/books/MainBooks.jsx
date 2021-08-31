@@ -1,16 +1,15 @@
 /* eslint-disable linebreak-style */
 import { useState } from 'react';
-import uuid from 'react-uuid';
 import AddBook from './add-book/AddBook';
 import BooksDisplay from './books-display/BooksDisplay';
 
 const MainBooks = () => {
   const [books, setBooks] = useState([
-    { id: uuid(), title: 'Don Quijote', category: 'History' },
-    { id: uuid(), title: 'The Great Gatsby', category: 'Fiction' },
+    { id: '1', title: 'Harry Potter and the Chamber of Secrets', category: 'Fiction' },
+    { id: '2', title: 'Jurassic Park', category: 'Science Fiction' },
   ]);
-  const handdleNewBook = ({ title = '', category = '' }) => {
-    setBooks([...books, { title, category, id: uuid() }]);
+  const handdleNewBook = ({ title = '', category = '', id }) => {
+    setBooks([...books, { title, category, id }]);
   };
   const propsRemoveBook = (id) => {
     setBooks(books.filter((book) => book.id !== id));
