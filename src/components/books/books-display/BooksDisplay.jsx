@@ -1,10 +1,15 @@
 /* eslint-disable linebreak-style */
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { removeBook } from '../../../redux/books/books';
 
 const BooksDisplay = (props) => {
+  const dispatch = useDispatch();
+
   const { books, propsRemoveBook } = props;
-  const removeBook = (id) => {
+  const removeElement = (id) => {
     propsRemoveBook(id);
+    dispatch(removeBook(id));
   };
   return (
     <div>
@@ -17,7 +22,7 @@ const BooksDisplay = (props) => {
               {' '}
               {book.category}
             </li>
-            <button type="button" onClick={() => removeBook(book.id)}>Remove</button>
+            <button type="button" onClick={() => removeElement(book.id)}>Remove</button>
           </div>
         ))}
       </ul>
