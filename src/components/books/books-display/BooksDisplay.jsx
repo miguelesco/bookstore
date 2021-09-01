@@ -6,9 +6,9 @@ import { removeBook } from '../../../redux/books/books';
 const BooksDisplay = (props) => {
   const dispatch = useDispatch();
 
-  const { books, propsRemoveBook } = props;
+  const { bookList } = props;
+  const books = Object.keys(bookList);
   const removeElement = (id) => {
-    propsRemoveBook(id);
     dispatch(removeBook(id));
   };
   return (
@@ -16,13 +16,13 @@ const BooksDisplay = (props) => {
       <h1>Books Display</h1>
       <ul>
         {books.map((book) => (
-          <div key={book.id}>
+          <div key={bookList[book].item_id}>
             <li>
-              {book.title}
+              {bookList[book].title}
               {' '}
-              {book.category}
+              {bookList[book].category}
             </li>
-            <button type="button" onClick={() => removeElement(book.id)}>Remove</button>
+            <button type="button" onClick={() => removeElement(book)}>Remove</button>
           </div>
         ))}
       </ul>
@@ -32,12 +32,11 @@ const BooksDisplay = (props) => {
 export default BooksDisplay;
 
 BooksDisplay.propTypes = {
-  books: PropTypes.arrayOf(
+  bookList: PropTypes.objectOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      item_id: PropTypes.string.isRequired,
       title: PropTypes.string,
       category: PropTypes.string,
     }),
   ).isRequired,
-  propsRemoveBook: PropTypes.func.isRequired,
 };

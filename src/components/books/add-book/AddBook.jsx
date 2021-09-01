@@ -1,7 +1,6 @@
 /* eslint-disable linebreak-style */
 import { useState } from 'react';
 import uuid from 'react-uuid';
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { addBook } from '../../../redux/books/books';
 
@@ -16,20 +15,18 @@ const options = [
   { id: 8, name: 'food' },
 ];
 
-const AddBook = (props) => {
+const AddBook = () => {
   const dispatch = useDispatch();
   const [book, setBook] = useState({
-    id: uuid(),
+    item_id: uuid(),
     title: '',
     category: '',
   });
   const handdleSubmit = (e) => {
-    const { handdleNewBook } = props;
     e.preventDefault();
-    handdleNewBook(book);
     dispatch(addBook(book));
     setBook({
-      id: uuid(),
+      item_id: uuid(),
       title: '',
       category: '',
     });
@@ -64,7 +61,3 @@ const AddBook = (props) => {
 };
 
 export default AddBook;
-
-AddBook.propTypes = {
-  handdleNewBook: PropTypes.func.isRequired,
-};
