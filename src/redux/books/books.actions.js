@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-console */
 import axios from 'axios';
 import {
   ADD_BOOK, APP_ID, BASE_URL, REMOVE_BOOK, UPDATE_APP_ID, UPDATE_BOOKS,

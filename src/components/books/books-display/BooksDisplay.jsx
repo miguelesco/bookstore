@@ -17,7 +17,6 @@ const BooksDisplay = (props) => {
         {bookList.map((book) => (
           <div key={book.item_id}>
             <li>
-              {console.log(book)}
               {book.title}
               {' '}
               {book.category}
