@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import uuid from 'react-uuid';
 import { useDispatch } from 'react-redux';
-import { addBook } from '../../../redux/books/books';
+import { fetchAddNewBook } from '../../../redux/books/books.actions';
 
 const options = [
   { id: 1, name: 'tech' },
@@ -24,7 +24,7 @@ const AddBook = () => {
   });
   const handdleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addBook(book));
+    dispatch(fetchAddNewBook(book));
     setBook({
       item_id: uuid(),
       title: '',

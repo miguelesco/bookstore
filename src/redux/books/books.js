@@ -1,41 +1,43 @@
 /* eslint-disable linebreak-style */
 import uuid from 'react-uuid';
+import {
+  ADD_BOOK, REMOVE_BOOK, UPDATE_APP_ID, UPDATE_BOOKS,
+} from './books.types';
 
-const ADD_BOOK = 'bookStore/books/ADD_BOOK';
-const REMOVE_BOOK = 'bookStore/books/REMOVE_BOOK';
-
-const initialState = {
-  1: {
+const initialState = [
+  {
     item_id: uuid(),
     title: "The Handmaid's Tale",
     category: 'Fiction',
   },
-  2: {
+  {
     item_id: uuid(),
     title: 'Great Expectations',
     category: 'Classics',
   },
-};
-
-export const addBook = (payload) => ({
-  type: ADD_BOOK,
-  payload,
-});
-
-export const removeBook = (id) => ({
-  type: REMOVE_BOOK,
-  id,
-});
+];
 
 const BookReducer = (state = initialState, action) => {
-  const booksList = { ...state };
+  let booksList = [...state];
   switch (action.type) {
     case ADD_BOOK:
-      booksList[action.payload.item_id] = action.payload;
+      booksList.push(action.payload);
       return booksList;
+
     case REMOVE_BOOK:
-      delete booksList[action.id];
+      booksList = booksList.filter((book) => book.item_id !== action.id);
       return booksList;
+
+    case UPDATE_BOOKS: {
+      const fetchBooks = Object.keys(action.payload)
+        .map((key) => ({ ...action.payload[key][0], item_id: key }));
+      booksList = [...booksList, ...fetchBooks];
+      return booksList;
+    }
+    case UPDATE_APP_ID:
+      // APP_ID = action.id;
+      return booksList;
+
     default:
       return booksList;
   }

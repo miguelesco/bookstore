@@ -1,13 +1,12 @@
 /* eslint-disable linebreak-style */
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { removeBook } from '../../../redux/books/books';
+import { removeBook } from '../../../redux/books/books.actions';
 
 const BooksDisplay = (props) => {
   const dispatch = useDispatch();
 
   const { bookList } = props;
-  const books = Object.keys(bookList);
   const removeElement = (id) => {
     dispatch(removeBook(id));
   };
@@ -15,14 +14,15 @@ const BooksDisplay = (props) => {
     <div>
       <h1>Books Display</h1>
       <ul>
-        {books.map((book) => (
-          <div key={bookList[book].item_id}>
+        {bookList.map((book) => (
+          <div key={book.item_id}>
             <li>
-              {bookList[book].title}
+              {console.log(book)}
+              {book.title}
               {' '}
-              {bookList[book].category}
+              {book.category}
             </li>
-            <button type="button" onClick={() => removeElement(book)}>Remove</button>
+            <button type="button" onClick={() => removeElement(book.item_id)}>Remove</button>
           </div>
         ))}
       </ul>
@@ -32,7 +32,7 @@ const BooksDisplay = (props) => {
 export default BooksDisplay;
 
 BooksDisplay.propTypes = {
-  bookList: PropTypes.objectOf(
+  bookList: PropTypes.arrayOf(
     PropTypes.shape({
       item_id: PropTypes.string.isRequired,
       title: PropTypes.string,
