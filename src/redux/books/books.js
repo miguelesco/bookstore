@@ -30,16 +30,7 @@ const BookReducer = (state = initialState, action) => {
 
     case UPDATE_BOOKS: {
       const fetchBooks = Object.keys(action.payload)
-        .map((key, i) => {
-          // if the item_id is repeated change it to a new one
-          if (key === state[i].item_id) {
-            return {
-              ...state[i],
-              ...action.payload[key],
-            };
-          }
-          return { ...action.payload[key][0], item_id: key };
-        });
+        .map((key) => ({ ...action.payload[key][0], item_id: key }));
       booksList = [...booksList, ...fetchBooks];
       return booksList;
     }
