@@ -24,6 +24,16 @@ export const updateAppId = (id) => ({
   id,
 });
 
+export const fetchRemoveBooks = (id) => (dispatch) => {
+  axios.delete(`${BASE_URL}/apps/${APP_ID}/books/${id}`)
+    .then(() => {
+      dispatch(removeBook(id));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const getAppId = () => (dispatch) => {
   axios.post(`${BASE_URL}/apps`)
     .then((res) => {
@@ -36,8 +46,8 @@ export const getAppId = () => (dispatch) => {
 
 export const fetchAddNewBook = (newBook) => (dispatch) => {
   axios.post(`${BASE_URL}/apps/${APP_ID}/books`, newBook)
-    .then((res) => {
-      dispatch(addBook(res.data));
+    .then(() => {
+      dispatch(addBook(newBook));
     })
     .catch((err) => {
       console.log(err);
@@ -48,7 +58,6 @@ export const fetchGetBooks = () => (dispatch) => {
   try {
     axios.get(`${BASE_URL}/apps/${APP_ID}/books`)
       .then((response) => {
-        console.log('peticion', response.data);
         dispatch(updateBooks(response.data));
       })
       .catch((error) => {

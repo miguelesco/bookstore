@@ -1,14 +1,14 @@
 /* eslint-disable linebreak-style */
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { removeBook } from '../../../redux/books/books.actions';
+import { fetchRemoveBooks } from '../../../redux/books/books.actions';
 
 const BooksDisplay = (props) => {
   const dispatch = useDispatch();
 
   const { bookList } = props;
   const removeElement = (id) => {
-    dispatch(removeBook(id));
+    dispatch(fetchRemoveBooks(id));
   };
   return (
     <div>
