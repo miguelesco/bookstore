@@ -11,4 +11,11 @@ const device = {
   lg: `min-width: ${size.lg}`,
 };
 
+export const flex = (direction, align, justify) => `
+    display: flex;
+    flex-direction: ${direction};
+    align-items: ${align};
+    justify-content: ${justify};
+  `;
+
 export default device;

@@ -19,6 +19,7 @@ const initialState = [
 
 const BookReducer = (state = initialState, action) => {
   let booksList = [...state];
+
   switch (action.type) {
     case ADD_BOOK:
       booksList.push(action.payload);
@@ -30,7 +31,11 @@ const BookReducer = (state = initialState, action) => {
 
     case UPDATE_BOOKS: {
       const fetchBooks = Object.keys(action.payload)
-        .map((key) => ({ ...action.payload[key][0], item_id: key }));
+        .map((key) => ({
+          ...action.payload[key][0],
+          item_id: key,
+        }));
+
       booksList = [...booksList, ...fetchBooks];
       return booksList;
     }

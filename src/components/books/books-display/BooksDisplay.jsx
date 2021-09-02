@@ -2,6 +2,9 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { fetchRemoveBooks } from '../../../redux/books/books.actions';
+import Book, {
+  Description, Category, Title, Author, Btn, BtnContainer, RemoveBtn,
+} from './styles';
 
 const BooksDisplay = (props) => {
   const dispatch = useDispatch();
@@ -12,17 +15,20 @@ const BooksDisplay = (props) => {
   };
   return (
     <div>
-      <h1>Books Display</h1>
       <ul>
         {bookList.map((book) => (
-          <div key={book.item_id}>
-            <li>
-              {book.title}
-              {' '}
-              {book.category}
-            </li>
-            <button type="button" onClick={() => removeElement(book.item_id)}>Remove</button>
-          </div>
+          <Book key={book.item_id}>
+            <Description>
+              <Category>{book.category}</Category>
+              <Title>{book.title}</Title>
+              <Author>Suzanne Collins</Author>
+              <BtnContainer>
+                <Btn type="button">Comments</Btn>
+                <RemoveBtn type="button" onClick={() => removeElement(book.item_id)}>Remove</RemoveBtn>
+                <Btn type="button">Edit</Btn>
+              </BtnContainer>
+            </Description>
+          </Book>
         ))}
       </ul>
     </div>
