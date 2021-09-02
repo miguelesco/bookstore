@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { fetchRemoveBooks } from '../../../redux/books/books.actions';
 import Book, {
-  Description, Category, Title, Author, Btn, BtnContainer, RemoveBtn,
+  Description, Category, Title, Author,
+  Btn, BtnContainer, RemoveBtn, Porcentage,
+  Chart, PorcentageText, ArcStart, ArcEnd,
+  Chapters, UpdateBtn,
 } from './styles';
 
 const BooksDisplay = (props) => {
@@ -28,6 +31,23 @@ const BooksDisplay = (props) => {
                 <Btn type="button">Edit</Btn>
               </BtnContainer>
             </Description>
+
+            <Porcentage>
+              <Chart>
+                <ArcStart />
+                <ArcEnd />
+              </Chart>
+              <PorcentageText>
+                <span>64%</span>
+                <p>completed</p>
+              </PorcentageText>
+            </Porcentage>
+
+            <Chapters>
+              <span>CURRENT CHAPTER</span>
+              <p>Chapter 1</p>
+              <UpdateBtn type="button">UPDATE PROGRESS</UpdateBtn>
+            </Chapters>
           </Book>
         ))}
       </ul>
