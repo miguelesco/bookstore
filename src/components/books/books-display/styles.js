@@ -2,6 +2,12 @@
 import styled from 'styled-components';
 import device, { flex } from '../../../styles/breakPoints';
 
+export const Container = styled.div`
+  width: 100%;
+  padding: 1rem 1rem;
+  box-sizing: border-box;
+`;
+
 const Book = styled.li`
   width: 100%;
   height: 100%;

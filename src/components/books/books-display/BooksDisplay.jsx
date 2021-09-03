@@ -6,7 +6,7 @@ import Book, {
   Description, Category, Title, Author,
   Btn, BtnContainer, RemoveBtn, Porcentage,
   Chart, PorcentageText, ArcStart, ArcEnd,
-  Chapters, UpdateBtn,
+  Chapters, UpdateBtn, Container,
 } from './styles';
 
 const BooksDisplay = (props) => {
@@ -17,7 +17,7 @@ const BooksDisplay = (props) => {
     dispatch(fetchRemoveBooks(id));
   };
   return (
-    <div>
+    <Container>
       <ul>
         {bookList.map((book) => (
           <Book key={book.item_id}>
@@ -51,7 +51,7 @@ const BooksDisplay = (props) => {
           </Book>
         ))}
       </ul>
-    </div>
+    </Container>
   );
 };
 export default BooksDisplay;
