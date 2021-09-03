@@ -3,6 +3,9 @@ import { useState } from 'react';
 import uuid from 'react-uuid';
 import { useDispatch } from 'react-redux';
 import { fetchAddNewBook } from '../../../redux/books/books.actions';
+import {
+  Title, Form, Container, BookTitleInput, BookCategorySelect, AddBtn,
+} from './styles';
 
 const options = [
   { id: 1, name: 'tech' },
@@ -38,11 +41,11 @@ const AddBook = () => {
     });
   };
   return (
-    <div className="add-book">
-      <h1>Add Book</h1>
-      <form onSubmit={handdleSubmit}>
-        <input value={book.title} name="title" placeholder="Add a title book" onChange={(e) => onInputChange(e)} />
-        <select name="category" defaultValue="category" onChange={(e) => onInputChange(e)}>
+    <Container>
+      <Title>Add new Book</Title>
+      <Form onSubmit={handdleSubmit}>
+        <BookTitleInput value={book.title} name="title" placeholder="Book Title" onChange={(e) => onInputChange(e)} />
+        <BookCategorySelect name="category" defaultValue="category" onChange={(e) => onInputChange(e)}>
           <option value="category" disabled>Category</option>
           {options.map((option) => (
             <option
@@ -53,10 +56,10 @@ const AddBook = () => {
             </option>
           ))}
 
-        </select>
-        <button type="submit">ADD BOOK</button>
-      </form>
-    </div>
+        </BookCategorySelect>
+        <AddBtn type="submit">ADD BOOK</AddBtn>
+      </Form>
+    </Container>
   );
 };
 

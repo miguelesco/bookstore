@@ -2,6 +2,12 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { fetchRemoveBooks } from '../../../redux/books/books.actions';
+import Book, {
+  Description, Category, Title, Author,
+  Btn, BtnContainer, RemoveBtn, Porcentage,
+  Chart, PorcentageText, ArcStart, ArcEnd,
+  Chapters, UpdateBtn, Container,
+} from './styles';
 
 const BooksDisplay = (props) => {
   const dispatch = useDispatch();
@@ -11,21 +17,41 @@ const BooksDisplay = (props) => {
     dispatch(fetchRemoveBooks(id));
   };
   return (
-    <div>
-      <h1>Books Display</h1>
+    <Container>
       <ul>
         {bookList.map((book) => (
-          <div key={book.item_id}>
-            <li>
-              {book.title}
-              {' '}
-              {book.category}
-            </li>
-            <button type="button" onClick={() => removeElement(book.item_id)}>Remove</button>
-          </div>
+          <Book key={book.item_id}>
+            <Description>
+              <Category>{book.category}</Category>
+              <Title>{book.title}</Title>
+              <Author>Suzanne Collins</Author>
+              <BtnContainer>
+                <Btn type="button">Comments</Btn>
+                <RemoveBtn type="button" onClick={() => removeElement(book.item_id)}>Remove</RemoveBtn>
+                <Btn type="button">Edit</Btn>
+              </BtnContainer>
+            </Description>
+
+            <Porcentage>
+              <Chart>
+                <ArcStart />
+                <ArcEnd />
+              </Chart>
+              <PorcentageText>
+                <span>64%</span>
+                <p>completed</p>
+              </PorcentageText>
+            </Porcentage>
+
+            <Chapters>
+              <span>CURRENT CHAPTER</span>
+              <p>Chapter 1</p>
+              <UpdateBtn type="button">UPDATE PROGRESS</UpdateBtn>
+            </Chapters>
+          </Book>
         ))}
       </ul>
-    </div>
+    </Container>
   );
 };
 export default BooksDisplay;

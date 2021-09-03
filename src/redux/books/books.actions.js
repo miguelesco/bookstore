@@ -45,14 +45,13 @@ export const getAppId = () => (dispatch) => {
     });
 };
 
-export const fetchAddNewBook = (newBook) => (dispatch) => {
-  axios.post(`${BASE_URL}/apps/${APP_ID}/books`, newBook)
-    .then(() => {
-      dispatch(addBook(newBook));
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+export const fetchAddNewBook = (newBook) => async (dispatch) => {
+  try {
+    await axios.post(`${BASE_URL}/apps/${APP_ID}/books`, newBook);
+    dispatch(addBook(newBook));
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const fetchGetBooks = () => (dispatch) => {

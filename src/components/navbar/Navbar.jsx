@@ -1,7 +1,8 @@
 /* eslint-disable linebreak-style */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import NavbarContainer from './styles';
+import NavbarContainer, { Title, RightNav, LeftNav } from './styles';
+import logo from '../../assets/images/userIcon.svg';
 
 const Navbar = () => {
   const links = [
@@ -19,23 +20,24 @@ const Navbar = () => {
 
   return (
     <NavbarContainer>
-      <h1 className="logo">
-        Bookstore CMS
-      </h1>
-      <ul>
-        {links.map((link) => (
-          <li key={link.id}>
-            <NavLink
-              to={link.path}
-              className="link"
-              activeClassName="active-link"
-              exact
-            >
-              {link.text}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+      <LeftNav>
+        <Title>Bookstore CMS</Title>
+        <ul>
+          {links.map((link) => (
+            <li key={link.id}>
+              <NavLink
+                to={link.path}
+                exact
+              >
+                {link.text}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </LeftNav>
+      <RightNav>
+        <img src={logo} alt="user icon" />
+      </RightNav>
     </NavbarContainer>
   );
 };
